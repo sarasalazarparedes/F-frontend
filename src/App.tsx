@@ -24,7 +24,6 @@ import {
   Line,
   BarChart,
   Bar,
-  PieChart as RechartsPie,
   Cell,
   XAxis,
   YAxis,
