@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Send, BarChart3, FileText, MessageCircle, Clock, AlertCircle, CheckCircle, Download, Maximize2, X, TrendingUp, PieChart, Sparkles, Zap, Brain, Shield, ArrowRight, Play } from 'lucide-react';
+import { Upload, Send, BarChart3, FileText, MessageCircle, Clock, AlertCircle, CheckCircle, Maximize2, X, TrendingUp, PieChart, Sparkles, Zap, Brain, Shield, ArrowRight, Play } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart as RechartsPie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const API_BASE = 'https://excel-ai-backend-production.up.railway.app';
@@ -120,13 +120,12 @@ const ChartDisplay: React.FC<{ chartData: ChartData; onExpand: (data: ChartData)
                 data={data}
                 cx="50%"
                 cy="50%"
-                labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }: any) => `${name} ${(percent * 100).toFixed(0)}%`}
                 outerRadius={size === 'large' ? 120 : 60}
                 fill="#8884d8"
                 dataKey="value"
               >
-                {data.map((entry, index) => (
+                {data.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </RechartsPie>
@@ -203,13 +202,12 @@ const ChartModal: React.FC<{ chartData: ChartData | null; onClose: () => void }>
                 data={data}
                 cx="50%"
                 cy="50%"
-                labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(1)}%`}
+                label={({ name, percent }: any) => `${name} ${(percent * 100).toFixed(1)}%`}
                 outerRadius={180}
                 fill="#8884d8"
                 dataKey="value"
               >
-                {data.map((entry, index) => (
+                {data.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </RechartsPie>
@@ -793,6 +791,7 @@ const ExcelAIChat: React.FC = () => {
       );
     }
   };
+
   // Mostrar landing page o app
   if (currentView === 'landing') {
     return <LandingPage onGetStarted={handleGetStarted} />;
